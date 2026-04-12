@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuildHub - Project Based Learning Platform</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+        }
+
+        /* HEADER */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e5e5e5;
+            z-index: 1000;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: black;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: black;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .btn-secondary {
+            color: #555;
+        }
+
+        .btn-primary {
+            background: black;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #333;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 120px 24px 80px;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 60px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: #666;
+            max-width: 600px;
+            margin: auto;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .btn-large {
+            padding: 12px 24px;
+            border-radius: 8px;
+        }
+
+        /* FEATURES */
+        .features {
+            padding: 80px 24px;
+            background: #fafafa;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .features-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #e5e5e5;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #666;
+        }
+
+        /* CTA */
+        .cta {
+            padding: 80px;
+            text-align: center;
+            background: black;
+            color: white;
+        }
+
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta a {
+            background: white;
+            color: black;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        /* FOOTER */
+        .footer {
+            padding: 30px;
+            text-align: center;
+            background: #111;
+            color: #999;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <nav class="nav">
+        <a href="/" class="logo">BuildHub</a>
+
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+        </ul>
+
+        <div class="auth-buttons">
+            <a href="/login" class="btn btn-secondary">Login</a>
+            <a href="/register" class="btn btn-primary">Get Started</a>
+        </div>
+    </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <h1 class="hero-title">Build. Collaborate. Get Reviewed.</h1>
+
+    <p class="hero-subtitle">
+        BuildHub is a project-based learning platform where developers work in teams,
+        build real projects, and get reviewed by peers.
+    </p>
+
+    <div class="hero-buttons">
+        <a href="/register" class="btn btn-primary btn-large">Start Building</a>
+        <a href="/login" class="btn btn-secondary btn-large">Login</a>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+    <div class="features-container">
+
+        <h2 class="features-title">Why BuildHub?</h2>
+
+        <div class="features-grid">
+
+            <div class="feature-card">
+                <h3>👥 Team Projects</h3>
+                <p>Work with up to 6 members and collaborate on real-world ideas.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>📦 Real Projects</h3>
+                <p>Practice by building actual industry-level applications.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>👨‍⚖️ Peer Review</h3>
+                <p>Get evaluated by other developers with fair scoring.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>🚀 Skill Growth</h3>
+                <p>Improve faster by building instead of just solving problems.</p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <h2>Ready to build something real?</h2>
+    <a href="/register">Get Started</a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>© 2026 BuildHub. Built for developers.</p>
+</footer>
+
+</body>
+</html>
