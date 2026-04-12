@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Profile - BuildHub</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+
+  <header>
+    <h1>{{ user.username }}'s Profile</h1>
+    <a href="/dashboard">Back</a>
+  </header>
+
+  <div class="profile-container">
+
+    <!-- LEFT SIDE -->
+    <div class="profile-left">
+
+      <div class="profile-card">
+        <p><strong>User ID:</strong> {{ user.user_id }}</p>
+
+        <form method="POST">
+          <label>GitHub</label>
+          <input type="text" name="github" value="{{ user.github }}">
+
+          <label>Bio</label>
+          <textarea name="bio">{{ user.bio }}</textarea>
+
+          <button type="submit">Update</button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="profile-right">
+
+      <div class="profile-info">
+        <h3>Social Links</h3>
+
+        <p><strong>GitHub:</strong> {{ user.github or "Not added" }}</p>
+        <p><strong>LinkedIn:</strong> Not added</p>
+        <p><strong>LeetCode:</strong> Not added</p>
+        <p><strong>Instagram:</strong> Not added</p>
+      </div>
+
+      <div class="profile-info">
+        <h3>Stats</h3>
+        <p>Completed Projects: {{ completed_count }}</p>
+      </div>
+      <a href="/apply_reviewer">
+        <button>Apply to Become Reviewer</button>
+      </a>
+    </div>
+
+  </div>
+
+</body>
+
+</html>

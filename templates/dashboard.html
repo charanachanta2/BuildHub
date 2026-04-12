@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Dashboard - BuildHub</title>
+  <link rel="stylesheet" href="/static/css/dashboard.css">
+</head>
+
+<body>
+
+  <header>
+    <h1>BuildHub</h1>
+
+    <nav>
+      <a href="/profile">Profile</a>
+      <a href="/my_projects">My Projects</a>
+      <a href="/reviews">Reviews</a>
+      {% if session.role == "admin" %}
+      <a href="/admin">Admin</a>
+      {% endif %}
+      <a href="/logout">Logout</a>
+
+      <!-- 🔔 NOTIFICATION BELL -->
+      <div class="bell-container">
+        <div class="bell" onclick="toggleNotifications()">🔔</div>
+        <span id="notif-count">0</span>
+
+        <div id="notif-box" class="notif-box">
+          <h4>Notifications</h4>
+          <div id="notif-list"></div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="main">
+
+    <!-- 🚀 Projects -->
+    <h2>Projects</h2>
+
+    <div class="projects">
+      {% for project in projects %}
+      <div class="card">
+        <h3>{{ project.title }}</h3>
+        <p>{{ project.description }}</p>
+
+        <div class="card-actions">
+          <a href="/project/{{ project._id }}">View</a>
+          <a href="/take/{{ project._id }}">Take</a>
+          <a href="/submit/{{ project._id }}">Submit</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+
+  <!-- 🔥 JAVASCRIPT -->
+  <script>
+
+    function toggleNotifications() {
+      const box = document.getElementById("notif-box");
+      box.style.display = box.style.display === "block" ? "none" : "block";
+    }
+
+    async function loadNotifications() {
+      const res = await fetch("/get_notifications");
+      const data = await res.json();
+
+      const list = document.getElementById("notif-list");
+      const count = document.getElementById("notif-count");
+
+      list.innerHTML = "";
+      count.innerText = data.notifications.length;
+
+      data.notifications.forEach(n => {
+        const div = document.createElement("div");
+        div.className = "notif-item";
+
+        div.innerHTML = `
+            <a href="/project/${n.project_id}">
+                ${n.message}
+            </a>
+        `;
+
+        list.appendChild(div);
+      });
+    }
+
+    /* 🔥 AUTO REFRESH */
+    setInterval(loadNotifications, 5000);
+    loadNotifications();
+
+  </script>
+
+</body>
+
+</html>

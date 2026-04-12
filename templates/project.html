@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ project.title }}</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f9fb;
+            margin: 0;
+        }
+
+        /* HEADER */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 15px 30px;
+            background: #fff;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        /* MAIN */
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* CARD */
+        .card {
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+            margin-bottom: 20px;
+        }
+
+        /* PROJECT CONTENT */
+        .markdown {
+            line-height: 1.7;
+        }
+
+        .markdown h1, .markdown h2 {
+            margin-top: 20px;
+        }
+
+        .markdown pre {
+            background: #111;
+            color: #fff;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        /* POINTS */
+        .points {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .points span {
+            color: #555;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+        /* REVIEWS */
+        .review {
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+
+        .score {
+            font-weight: bold;
+        }
+
+        /* BUTTON */
+        .btn {
+            display: inline-block;
+            padding: 8px 12px;
+            background: #000;
+            color: #fff;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background: #333;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    <h3>{{ project.title }}</h3>
+    <a href="/dashboard">Back</a>
+</div>
+
+<div class="container">
+
+    <!-- 🔥 PROJECT DETAILS -->
+    <div class="card">
+        <div class="markdown">
+            {{ content | safe }}
+        </div>
+    </div>
+
+    <!-- 🏆 FINAL POINTS -->
+    <div class="card">
+        <div class="points">
+            {{ avg_score | round(2) }} Points
+            <span>(Final Score)</span>
+        </div>
+    </div>
+
+    <!-- 👨‍⚖️ REVIEWS -->
+    <div class="card">
+        <h3>Reviews</h3>
+
+        {% if reviews %}
+            {% for r in reviews %}
+            <div class="review">
+                <p class="score">Score: {{ r.score }} / 100</p>
+                <p>{{ r.feedback }}</p>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No reviews yet</p>
+        {% endif %}
+    </div>
+
+</div>
+
+</body>
+</html>
