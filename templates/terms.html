@@ -7,50 +7,290 @@
   <link rel="stylesheet" href="/static/css/globals.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta name="description"
-    content="BuildHub helps developers learn by building real-world projects, earning XP, badges and proof of skill.">
-
-  <meta name="keywords" content="BuildHub, coding projects, developer portfolio, student projects, coding practice">
-
+  <meta name="description" content="BuildHub Terms & Conditions - Review our terms of service and user agreements.">
+  <meta name="keywords" content="BuildHub, terms, conditions, user agreement">
   <meta name="author" content="BuildHub">
-
-  <meta property="og:title" content="BuildHub">
+  <meta property="og:title" content="Terms & Conditions - BuildHub">
   <meta property="og:description" content="Learn by Building Real Projects">
   <meta property="og:image" content="/static/images/logo.png">
   <meta property="og:type" content="website">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      color: #1a1a1a;
+      line-height: 1.6;
+    }
+
+    body.dark {
+      background: #0f172a;
+      color: #f8fafc;
+    }
+
+    .policy-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 24px;
+      min-height: 100vh;
+    }
+
+    .policy-header {
+      text-align: center;
+      margin-bottom: 48px;
+      border-bottom: 2px solid #000;
+      padding-bottom: 32px;
+    }
+
+    body.dark .policy-header {
+      border-bottom-color: #334155;
+    }
+
+    .policy-header h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -1px;
+    }
+
+    .policy-header p {
+      font-size: 18px;
+      color: #666;
+      font-weight: 500;
+    }
+
+    body.dark .policy-header p {
+      color: #cbd5e1;
+    }
+
+    .policy-content {
+      background: white;
+      border-radius: 12px;
+      padding: 48px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      border: 1px solid #f0f0f0;
+    }
+
+    body.dark .policy-content {
+      background: #1e293b;
+      border-color: #334155;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .policy-section {
+      margin-bottom: 40px;
+    }
+
+    .policy-section h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #000;
+      letter-spacing: -0.5px;
+    }
+
+    body.dark .policy-section h3 {
+      color: #f8fafc;
+    }
+
+    .policy-section p {
+      font-size: 15px;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+
+    body.dark .policy-section p {
+      color: #cbd5e1;
+    }
+
+    .policy-section ul {
+      margin-left: 24px;
+      margin-bottom: 12px;
+    }
+
+    .policy-section li {
+      font-size: 15px;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 8px;
+    }
+
+    body.dark .policy-section li {
+      color: #cbd5e1;
+    }
+
+    .policy-footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid #eee;
+      text-align: center;
+      color: #666;
+      font-size: 14px;
+    }
+
+    body.dark .policy-footer {
+      border-top-color: #334155;
+      color: #94a3b8;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: #000;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+
+    body.dark .back-link {
+      color: #cbd5e1;
+    }
+
+    .back-link:hover {
+      color: #333;
+      transform: translateX(-4px);
+    }
+
+    @media (max-width: 768px) {
+      .policy-container {
+        padding: 40px 16px;
+      }
+
+      .policy-header h1 {
+        font-size: 36px;
+      }
+
+      .policy-content {
+        padding: 32px 24px;
+      }
+
+      .policy-section h3 {
+        font-size: 18px;
+      }
+    }
+  </style>
 </head>
 
 <body class="{{ user.theme if user else 'light' }}">
 
-  <div class="container">
-    <div class="page-box">
+  <div class="policy-container">
+    <a href="/" class="back-link">← Back to Home</a>
 
+    <div class="policy-header">
       <h1>Terms & Conditions</h1>
+      <p>Last updated: January 2025</p>
+    </div>
 
-      <p>Welcome to BuildHub.</p>
+    <div class="policy-content">
+      <div class="policy-section">
+        <h3>Welcome to BuildHub</h3>
+        <p>These Terms & Conditions govern your use of the BuildHub platform. By accessing or using BuildHub, you agree to comply with these terms. If you do not agree, please do not use our service.</p>
+      </div>
 
-      <h3>1. Use of Platform</h3>
-      <p>Users may upload projects, collaborate, and learn through BuildHub.</p>
+      <div class="policy-section">
+        <h3>1. Use of Platform</h3>
+        <p>BuildHub is a learning platform where you can:</p>
+        <ul>
+          <li>Upload and work on coding projects</li>
+          <li>Collaborate and learn from other developers</li>
+          <li>Earn XP, badges, and certificates</li>
+          <li>Build your professional portfolio</li>
+        </ul>
+        <p>You must be at least 13 years old to use BuildHub.</p>
+      </div>
 
-      <h3>2. User Responsibility</h3>
-      <p>You are responsible for content uploaded by your account.</p>
+      <div class="policy-section">
+        <h3>2. Your Responsibilities</h3>
+        <p>You are responsible for:</p>
+        <ul>
+          <li>Maintaining the confidentiality of your account credentials</li>
+          <li>All activities conducted through your account</li>
+          <li>Ensuring your content complies with these terms</li>
+          <li>Promptly notifying us of any unauthorized access</li>
+        </ul>
+      </div>
 
-      <h3>3. Prohibited Content</h3>
-      <p>No spam, illegal content, malware, abusive material, copied work, or harmful files.</p>
+      <div class="policy-section">
+        <h3>3. Prohibited Content</h3>
+        <p>You may not upload, share, or create content that:</p>
+        <ul>
+          <li>Contains spam, phishing, or malware</li>
+          <li>Is illegal, harmful, or abusive</li>
+          <li>Violates intellectual property rights</li>
+          <li>Infringes on others' privacy or rights</li>
+          <li>Contains explicit or adult material</li>
+          <li>Impersonates other individuals or organizations</li>
+        </ul>
+      </div>
 
-      <h3>4. Ownership</h3>
-      <p>You retain ownership of your uploaded projects.</p>
+      <div class="policy-section">
+        <h3>4. Content Ownership</h3>
+        <p>You retain full ownership of the code and projects you upload to BuildHub. However, you grant us a license to display, store, and use your content to operate the platform and provide services to you.</p>
+      </div>
 
-      <h3>5. Moderation</h3>
-      <p>BuildHub may remove content violating rules.</p>
+      <div class="policy-section">
+        <h3>5. Community Moderation</h3>
+        <p>BuildHub reserves the right to moderate, remove, or restrict access to content that violates these terms. Repeated violations may result in account suspension or permanent ban.</p>
+      </div>
 
-      <h3>6. Service Changes</h3>
-      <p>Features may improve, change, or be updated anytime.</p>
+      <div class="policy-section">
+        <h3>6. Service Changes & Maintenance</h3>
+        <p>We may modify, suspend, or discontinue features of BuildHub at any time without prior notice. We are not liable for any loss of data or service interruptions due to maintenance or updates.</p>
+      </div>
 
-      <h3>7. Acceptance</h3>
-      <p>By using BuildHub, you agree to these terms.</p>
+      <div class="policy-section">
+        <h3>7. Disclaimer of Warranties</h3>
+        <p>BuildHub is provided "as is" without warranties of any kind. We do not guarantee that the platform will be error-free, uninterrupted, or that all content is accurate or complete.</p>
+      </div>
 
+      <div class="policy-section">
+        <h3>8. Limitation of Liability</h3>
+        <p>To the fullest extent permitted by law, BuildHub shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the platform.</p>
+      </div>
+
+      <div class="policy-section">
+        <h3>9. Acceptable Use Policy</h3>
+        <p>You agree not to:</p>
+        <ul>
+          <li>Attempt to hack, exploit, or abuse the platform</li>
+          <li>Engage in any form of automated scraping or data mining</li>
+          <li>Upload copyrighted content without permission</li>
+          <li>Share others' work as your own</li>
+          <li>Harass, threaten, or abuse other users</li>
+        </ul>
+      </div>
+
+      <div class="policy-section">
+        <h3>10. Termination</h3>
+        <p>We may terminate or suspend your account if you violate these terms. Upon termination, you lose access to all platform features, though we may retain certain data as required by law.</p>
+      </div>
+
+      <div class="policy-section">
+        <h3>11. Governing Law</h3>
+        <p>These Terms & Conditions are governed by applicable laws. Any disputes shall be resolved through binding arbitration or court proceedings in the relevant jurisdiction.</p>
+      </div>
+
+      <div class="policy-section">
+        <h3>12. Updates to Terms</h3>
+        <p>We may update these Terms & Conditions at any time. Your continued use of BuildHub constitutes acceptance of the updated terms. We recommend reviewing these terms periodically.</p>
+      </div>
+
+      <div class="policy-section">
+        <h3>13. Contact & Support</h3>
+        <p>For questions about these Terms & Conditions, please contact us at <strong>support@buildhub.io</strong></p>
+      </div>
+
+      <div class="policy-footer">
+        <p>Thank you for being part of the BuildHub community.</p>
+      </div>
     </div>
   </div>
 
