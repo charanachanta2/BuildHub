@@ -22,7 +22,7 @@ app.secret_key = "BuildHub@2026$Secret#987"
 
 
 app.config["MAIL_EMAIL"] = "buildhubcode@gmail.com"
-app.config["MAIL_PASSWORD"] ="abcd efgh ijkl mnop"
+app.config["MAIL_PASSWORD"] ="ysxi vkjm neoh seyl"
 
 serializer = URLSafeTimedSerializer(app.secret_key)
 
