@@ -9,18 +9,220 @@
   <link rel="stylesheet" href="/static/css/global.css">
   <link rel="icon" href="/static/images/favicon.png">
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description" content="BuildHub helps developers learn by building real-world projects, earning XP, badges and proof of skill.">
+  <meta name="description" content="BuildHub helps developers learn by building real-world projects, earning XP, badges and proof of skill.">
 
-<meta name="keywords" content="BuildHub, coding projects, developer portfolio, student projects, coding practice">
+  <meta name="keywords" content="BuildHub, coding projects, developer portfolio, student projects, coding practice">
 
-<meta name="author" content="BuildHub">
+  <meta name="author" content="BuildHub">
 
-<meta property="og:title" content="BuildHub">
-<meta property="og:description" content="Learn by Building Real Projects">
-<meta property="og:image" content="/static/images/logo.png">
-<meta property="og:type" content="website">
+  <meta property="og:title" content="BuildHub">
+  <meta property="og:description" content="Learn by Building Real Projects">
+  <meta property="og:image" content="/static/images/logo.png">
+  <meta property="og:type" content="website">
+
+  <style>
+    /* Policy Modal Styles */
+    .policy-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      backdrop-filter: blur(4px);
+    }
+
+    .policy-modal.hidden {
+      display: none;
+    }
+
+    .policy-box {
+      background: white;
+      border-radius: 16px;
+      padding: 48px 40px;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      animation: slideUp 0.4s ease;
+    }
+
+    body.dark .policy-box {
+      background: #1e293b;
+      color: #f8fafc;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .policy-box h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #000;
+      letter-spacing: -0.5px;
+    }
+
+    body.dark .policy-box h2 {
+      color: #f8fafc;
+    }
+
+    .policy-box > p:first-of-type {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+
+    body.dark .policy-box > p:first-of-type {
+      color: #cbd5e1;
+    }
+
+    .policy-links {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .policy-links a {
+      color: #000;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 8px 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      background: #f9f9f9;
+    }
+
+    body.dark .policy-links a {
+      color: #f8fafc;
+      border-color: #475569;
+      background: #334155;
+    }
+
+    .policy-links a:hover {
+      border-color: #000;
+      background: #f0f0f0;
+      transform: translateY(-2px);
+    }
+
+    body.dark .policy-links a:hover {
+      border-color: #64748b;
+      background: #475569;
+    }
+
+    .policy-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .policy-box button {
+      flex: 1;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .policy-box button:first-child {
+      background: #000;
+      color: white;
+    }
+
+    body.dark .policy-box button:first-child {
+      background: #f8fafc;
+      color: #000;
+    }
+
+    .policy-box button:first-child:hover {
+      background: #1a1a1a;
+      transform: translateY(-2px);
+    }
+
+    body.dark .policy-box button:first-child:hover {
+      background: #e2e8f0;
+    }
+
+    .policy-box button:last-child {
+      background: #f0f0f0;
+      color: #000;
+      border: 1px solid #ddd;
+    }
+
+    body.dark .policy-box button:last-child {
+      background: #334155;
+      color: #f8fafc;
+      border-color: #475569;
+    }
+
+    .policy-box button:last-child:hover {
+      background: #e0e0e0;
+    }
+
+    body.dark .policy-box button:last-child:hover {
+      background: #475569;
+    }
+
+    .policy-box button:active {
+      transform: translateY(0);
+    }
+
+    .policy-subtitle {
+      font-size: 13px;
+      color: #999;
+      margin-top: 20px;
+      line-height: 1.4;
+    }
+
+    body.dark .policy-subtitle {
+      color: #64748b;
+    }
+
+    @media (max-width: 480px) {
+      .policy-box {
+        padding: 40px 24px;
+      }
+
+      .policy-box h2 {
+        font-size: 28px;
+      }
+
+      .policy-links {
+        gap: 8px;
+      }
+
+      .policy-links a {
+        font-size: 13px;
+        padding: 6px 12px;
+      }
+
+      .policy-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 
 <body class="{{ user.theme if user.theme else 'light' }}">
@@ -28,22 +230,25 @@
 
   <div id="policyModal" class="policy-modal">
     <div class="policy-box">
+      <h2>Welcome to BuildHub</h2>
+      <p>Please review and accept our policies to continue using the platform.</p>
 
-      <h2>Welcome to BuildHub 🚀</h2>
-      <p>Please review and accept our policies to continue.</p>
-
-      <p>
-        <a href="/terms" target="_blank">Terms & Conditions</a> |
+      <div class="policy-links">
+        <a href="/terms" target="_blank">Terms & Conditions</a>
         <a href="/privacy" target="_blank">Privacy Policy</a>
-      </p>
+      </div>
 
-      <button onclick="acceptPolicies()">Accept & Continue</button>
-      <button onclick="window.location='/logout'">Decline</button>
+      <div class="policy-actions">
+        <button onclick="acceptPolicies()">Accept & Continue</button>
+        <button onclick="window.location='/logout'">Decline</button>
+      </div>
 
+      <p class="policy-subtitle">By accepting, you agree to our Terms & Conditions and Privacy Policy. You can change your preferences in Settings at any time.</p>
     </div>
   </div>
 
   {% endif %}
+
   <!-- 🔝 HEADER -->
   <header>
     <div class="logo">
@@ -227,7 +432,7 @@
       })
         .then(res => res.json())
         .then(data => {
-          document.getElementById("policyModal").style.display = "none";
+          document.getElementById("policyModal").classList.add("hidden");
         });
     }
   </script>
@@ -257,8 +462,6 @@
         document.getElementById("dropdown").classList.add("hidden");
       }
     });
-
-
   </script>
 </body>
 
