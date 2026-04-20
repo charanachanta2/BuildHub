@@ -18,7 +18,7 @@ import markdown
 import random
 
 app = Flask(__name__)
-app.secret_key = os.getenv("FLASK_SECRET_KEY")
+app.secret_key = os.environ.get("SECRET_KEY", "buildhub-dev-secret")
 
 app.config["MAIL_EMAIL"] = os.getenv("MAIL_EMAIL")
 app.config["MAIL_PASSWORD"] = os.getenv("MAIL_PASSWORD")
