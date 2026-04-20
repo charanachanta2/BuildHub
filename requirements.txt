@@ -6,3 +6,4 @@ python-dotenv
 flask-login
 flask-wtf
 gunicorn
+itsdangerous
