@@ -18,20 +18,21 @@ import markdown
 import random
 
 app = Flask(__name__)
-app.secret_key = os.environ.get("SECRET_KEY", "buildhub-dev-secret")
+app.secret_key = "BuildHub@2026$Secret#987"
 
-app.config["MAIL_EMAIL"] = os.getenv("MAIL_EMAIL")
-app.config["MAIL_PASSWORD"] = os.getenv("MAIL_PASSWORD")
+
+app.config["MAIL_EMAIL"] = "buildhubcode@gmail.com"
+app.config["MAIL_PASSWORD"] ="abcd efgh ijkl mnop"
 
 serializer = URLSafeTimedSerializer(app.secret_key)
+
+# ---------------- DB ----------------
+client = MongoClient("mongodb+srv://charanachanta2:Charan1114@cluster0.ysxk5ry.mongodb.net/")
+db = client["buildhub"]
 
 # ---------------- CONFIG ----------------
 UPLOAD_FOLDER = "static/uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-
-# ---------------- DB ----------------
-client = MongoClient(os.getenv("MONGO_URI"))
-db = client["buildhub"]
 
 # ---------------- CREATE ADMIN ----------------
 if not db.users.find_one({"username": "admin"}):
