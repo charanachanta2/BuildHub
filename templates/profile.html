@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Profile - BuildHub</title>
+  <link rel="stylesheet" href="/static/css/globals.css">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="icon" href="/static/images/favicon.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+    content="BuildHub helps developers learn by building real-world projects, earning XP, badges and proof of skill.">
+
+  <meta name="keywords" content="BuildHub, coding projects, developer portfolio, student projects, coding practice">
+
+  <meta name="author" content="BuildHub">
+
+  <meta property="og:title" content="BuildHub">
+  <meta property="og:description" content="Learn by Building Real Projects">
+  <meta property="og:image" content="/static/images/logo.png">
+  <meta property="og:type" content="website">
+</head>
+
+<body class="{{ user.theme if user.theme else 'light' }}">
+
+  <header>
+    <div class="logo">
+      <img src="/static/images/logo.png" alt="BuildHub Logo">
+      <span>BuildHub</span>
+    </div>
+
+    <h1>{{ user.username }}'s Profile</h1>
+    <a href="/dashboard">Back</a>
+  </header>
+
+  <div class="profile-container">
+
+    <!-- LEFT SIDE -->
+    <div class="profile-left">
+
+      <div class="profile-card">
+        <p><strong>User ID:</strong> {{ user.user_id }}</p>
+
+        <form method="POST">
+
+          <label>GitHub</label>
+          <input type="text" name="github" value="{{ user.github }}">
+
+          <label>LinkedIn</label>
+          <input type="text" name="linkedin" value="{{ user.linkedin or '' }}">
+
+          <label>LeetCode</label>
+          <input type="text" name="leetcode" value="{{ user.leetcode or '' }}">
+
+          <label>Instagram</label>
+          <input type="text" name="instagram" value="{{ user.instagram or '' }}">
+
+          <label>Bio</label>
+          <textarea name="bio">{{ user.bio }}</textarea>
+
+          <button type="submit">Update</button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="profile-right">
+      <div class="profile-info">
+        <h3>Badges</h3>
+
+        {% if user.badges %}
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          {% for badge in user.badges %}
+          <div style="text-align:center;">
+            <img src="/static/badges/{{ badge.icon }}" width="60">
+            <p style="font-size:12px;">{{ badge.name }}</p>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p>No badges yet</p>
+        {% endif %}
+      </div>
+      <div class="profile-info">
+        <h3>Social Links</h3>
+
+        <p><strong>GitHub:</strong> {{ user.github or "Not added" }}</p>
+        <p><strong>LinkedIn:</strong> {{ user.linkedin or "Not added" }}</p>
+        <p><strong>LeetCode:</strong> {{ user.leetcode or "Not added" }}</p>
+        <p><strong>Instagram:</strong> {{ user.instagram or "Not added" }}</p>
+      </div>
+
+      <div class="profile-info">
+        <h3>Stats</h3>
+        <p>Completed Projects: {{ completed_count }}</p>
+      </div>
+      <a href="/apply_reviewer">
+        <button>Apply to Become Reviewer</button>
+      </a>
+    </div>
+
+  </div>
+
+</body>
+
+</html>

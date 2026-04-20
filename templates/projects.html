@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Explore Projects</title>
+  <link rel="stylesheet" href="/static/css/globals.css">
+  <link rel="stylesheet" href="/static/css/nav.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+    content="BuildHub helps developers learn by building real-world projects, earning XP, badges and proof of skill.">
+
+  <meta name="keywords" content="BuildHub, coding projects, developer portfolio, student projects, coding practice">
+
+  <meta name="author" content="BuildHub">
+
+  <meta property="og:title" content="BuildHub">
+  <meta property="og:description" content="Learn by Building Real Projects">
+  <meta property="og:image" content="/static/images/logo.png">
+  <meta property="og:type" content="website">f
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI';
+      background: #f8f9fb;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 30px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    /* 🔍 SEARCH */
+    .search-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .search-bar input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+    }
+
+    .search-bar button {
+      padding: 10px 15px;
+      background: black;
+      color: white;
+      border: none;
+      border-radius: 6px;
+    }
+
+    /* FILTER */
+    .filters {
+      margin-bottom: 20px;
+    }
+
+    .filters a {
+      margin-right: 10px;
+      text-decoration: none;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .active-filter {
+      font-weight: bold;
+      color: black;
+    }
+
+    /* LIST */
+    .project {
+      display: flex;
+      justify-content: space-between;
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid #eee;
+      margin-bottom: 15px;
+      transition: 0.2s;
+    }
+
+    .project:hover {
+      transform: translateY(-3px);
+    }
+
+    .left {
+      max-width: 70%;
+    }
+
+    .left h3 {
+      margin: 0;
+    }
+
+    .desc {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .creator {
+      font-size: 12px;
+      color: #999;
+      margin-top: 5px;
+    }
+
+    /* STATUS */
+    .status {
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-top: 8px;
+    }
+
+    .completed {
+      background: #e6f7ee;
+      color: #0f9d58;
+    }
+
+    .in_progress {
+      background: #fff4e5;
+      color: #ff9800;
+    }
+
+    .not_taken {
+      background: #eee;
+      color: #666;
+    }
+
+    /* RIGHT SIDE */
+    .right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 8px 10px;
+      border-radius: 6px;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .view {
+      background: #eee;
+      color: #333;
+    }
+
+    .primary {
+      background: black;
+      color: white;
+    }
+
+    .disabled {
+      background: #ddd;
+      color: #888;
+    }
+  </style>
+</head>
+
+<body class="{{ user.theme if user.theme else 'light' }}">
+  <header class="top-nav">
+
+    <div class="nav-left">
+      <a href="/dashboard" class="logo">
+        <img src="/static/images/logo.png">
+        <span>BuildHub</span>
+      </a>
+    </div>
+
+    <div class="nav-right">
+      <a href="/dashboard">Dashboard</a>
+      <a href="/projects">Explore</a>
+      <a href="/my_projects">My Work</a>
+      <a href="/my_creations">My Creations</a>
+      <a href="/leaderboard">Leaderboard</a>
+    </div>
+
+  </header>
+  <div class="container">
+
+    <h1>🚀 Explore Projects</h1>
+
+    <!-- 🔍 SEARCH -->
+    <form class="search-bar">
+      <input name="q" placeholder="Search projects..." value="{{ query }}">
+      <button>Search</button>
+    </form>
+
+    <!-- 🏷 FILTERS -->
+    <div class="filters">
+      <a href="/projects?filter=all" class="{% if current_filter=='all' %}active-filter{% endif %}">All</a>
+      <a href="/projects?filter=not_taken" class="{% if current_filter=='not_taken' %}active-filter{% endif %}">New</a>
+      <a href="/projects?filter=in_progress" class="{% if current_filter=='in_progress' %}active-filter{% endif %}">In
+        Progress</a>
+      <a href="/projects?filter=completed"
+        class="{% if current_filter=='completed' %}active-filter{% endif %}">Completed</a>
+    </div>
+
+    <!-- 📦 PROJECT LIST -->
+    {% for p in projects %}
+    <div class="project">
+
+      <div class="left">
+        <h3>{{ p.title }}</h3>
+
+        <div class="desc">{{ p.description }}</div>
+
+        <div class="creator">by {{ p.creator }}</div>
+
+        <div class="status {{ p.status }}">
+          {{ p.status }}
+        </div>
+      </div>
+
+      <div class="right">
+
+        <a href="/project/{{ p._id }}" class="btn view">View</a>
+
+        {% if p.status == "not_taken" %}
+        <a href="/take/{{ p._id }}" class="btn primary">Take</a>
+
+        {% elif p.status == "in_progress" %}
+        <a href="/submit/{{ p._id }}" class="btn primary">Submit</a>
+
+        {% else %}
+        <button class="btn disabled">Completed</button>
+        {% endif %}
+
+      </div>
+
+    </div>
+    {% endfor %}
+
+  </div>
+
+</body>
+
+</html>

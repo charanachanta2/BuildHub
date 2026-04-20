@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+    content="BuildHub helps developers learn by building real-world projects, earning XP, badges and proof of skill.">
+
+  <meta name="keywords" content="BuildHub, coding projects, developer portfolio, student projects, coding practice">
+
+  <meta name="author" content="BuildHub">
+
+  <meta property="og:title" content="BuildHub">
+  <meta property="og:description" content="Learn by Building Real Projects">
+  <meta property="og:image" content="/static/images/logo.png">
+  <meta property="og:type" content="website">
+  <title>BuildHub Documentation</title>
+  <link rel="stylesheet" href="/static/css/nav.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+      line-height: 1.6;
+    }
+
+    body.dark {
+      background: #0f172a;
+      color: #f8fafc;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 80px 20px 50px;
+      border-bottom: 1px solid #e5e7eb;
+      margin-bottom: 60px;
+    }
+
+    body.dark .hero {
+      border-bottom-color: #334155;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      color: #000;
+      letter-spacing: -1px;
+    }
+
+    body.dark .hero h1 {
+      color: #f8fafc;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #666;
+      max-width: 700px;
+    }
+
+    body.dark .hero p {
+      color: #cbd5e1;
+    }
+
+    /* Card Grid */
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+      margin-bottom: 60px;
+    }
+
+    /* Cards */
+    .card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 36px;
+      transition: all 0.3s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    body.dark .card {
+      background: #1e293b;
+      border-color: #334155;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+      border-color: #d1d5db;
+    }
+
+    body.dark .card:hover {
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+      border-color: #475569;
+    }
+
+    .card h2 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #1a1a1a;
+    }
+
+    body.dark .card h2 {
+      color: #f8fafc;
+    }
+
+    .card ul {
+      list-style-position: inside;
+      margin: 0;
+      padding: 0;
+    }
+
+    .card li {
+      color: #555;
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+
+    body.dark .card li {
+      color: #cbd5e1;
+    }
+
+    .card li:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 80px;
+      padding: 40px 20px;
+      text-align: center;
+      color: #888;
+      border-top: 1px solid #e5e7eb;
+      font-size: 14px;
+    }
+
+    body.dark .footer {
+      border-top-color: #334155;
+      color: #94a3b8;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        padding: 60px 20px 40px;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .docs-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .card {
+        padding: 28px;
+      }
+
+      .card h2 {
+        font-size: 22px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 28px;
+      }
+
+      .card {
+        padding: 24px;
+      }
+
+      .card h2 {
+        font-size: 20px;
+        margin-bottom: 16px;
+      }
+
+      .card li {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <header class="top-nav">
+      <div class="nav-left">
+        <a href="/dashboard" class="logo">
+          <img src="/static/images/logo.png" alt="BuildHub Logo">
+          <span>BuildHub</span>
+        </a>
+      </div>
+
+      <div class="nav-right">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/projects">Explore</a>
+        <a href="/about">About</a>
+      </div>
+    </header>
+
+    <div class="hero">
+      <h1>Documentation</h1>
+      <p>Everything you need to use BuildHub effectively and make the most of your learning journey.</p>
+    </div>
+
+    <div class="docs-grid">
+      <div class="card">
+        <h2>🚀 Getting Started</h2>
+        <ul>
+          <li>Create an account with email or OAuth</li>
+          <li>Complete your developer profile</li>
+          <li>Explore available project challenges</li>
+          <li>Choose a project and start building</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>📦 Projects</h2>
+        <ul>
+          <li>Join projects from the Explore page</li>
+          <li>Add teammates (up to 6 per team)</li>
+          <li>Track your progress in the dashboard</li>
+          <li>Collaborate in real-time with tools</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>📤 Submission</h2>
+        <ul>
+          <li>Submit your GitHub repository link</li>
+          <li>Add a live hosted project URL</li>
+          <li>Include deployment credentials if needed</li>
+          <li>One team = one final submission</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>🧠 Peer Reviews</h2>
+        <ul>
+          <li>Projects are reviewed by eligible community members</li>
+          <li>Get detailed scores and constructive feedback</li>
+          <li>Use feedback to continuously improve</li>
+          <li>Review others&apos; projects to earn XP</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>🏆 XP & Levels</h2>
+        <ul>
+          <li>Earn XP after project completion</li>
+          <li>Unlock higher levels and new features</li>
+          <li>Compete on global leaderboard</li>
+          <li>Maintain daily/weekly streaks</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>❓ FAQ</h2>
+        <ul>
+          <li>Can I work solo? → Yes, absolutely</li>
+          <li>Can I join as a team? → Yes, up to 6 members</li>
+          <li>Can I create projects? → Yes, if verified</li>
+          <li>Is GitHub required? → Recommended but not mandatory</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer">
+      BuildHub Docs • Official Guide for Builders
+    </div>
+
+  </div>
+
+</body>
+
+</html>

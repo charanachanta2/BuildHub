@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{ user.username }} - BuildHub</title>
+  <link rel="icon" href="/static/images/favicon.png">
+  <link rel="stylesheet" href="/static/css/nav.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+    content="BuildHub helps developers learn by building real-world projects, earning XP, badges and proof of skill.">
+
+  <meta name="keywords" content="BuildHub, coding projects, developer portfolio, student projects, coding practice">
+
+  <meta name="author" content="BuildHub">
+
+  <meta property="og:title" content="BuildHub">
+  <meta property="og:description" content="Learn by Building Real Projects">
+  <meta property="og:image" content="/static/images/logo.png">
+  <meta property="og:type" content="website">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI';
+    }
+
+    /* 🌙 THEME */
+    body.light {
+      background: #f5f5f5;
+      color: #000;
+    }
+
+    body.dark {
+      background: #0f172a;
+      color: #fff;
+    }
+
+    /* MAIN CONTAINER */
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    /* CARD */
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 20px;
+      border: 1px solid #eee;
+    }
+
+    body.dark .card {
+      background: #1e293b;
+      border-color: #334155;
+    }
+
+    /* TOP PROFILE */
+    .top {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: black;
+      color: white;
+      font-size: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .info h2 {
+      margin: 0;
+    }
+
+    .bio {
+      color: #666;
+      margin-top: 5px;
+    }
+
+    body.dark .bio {
+      color: #cbd5e1;
+    }
+
+    /* STATS */
+    .stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 20px;
+    }
+
+    .stat h3 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .stat p {
+      margin: 0;
+      font-size: 13px;
+      color: #666;
+    }
+
+    body.dark .stat p {
+      color: #aaa;
+    }
+
+    /* BADGES */
+    .badges {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+
+    .badge {
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .badge img {
+      width: 50px;
+      margin-bottom: 5px;
+    }
+
+    /* LINKS */
+    .links a {
+      display: inline-block;
+      margin-right: 15px;
+      margin-top: 10px;
+      text-decoration: none;
+      font-size: 14px;
+      color: black;
+    }
+
+    body.dark .links a {
+      color: #90cdf4;
+    }
+
+    /* SECTION TITLE */
+    h3 {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body class="{{ user.theme if user.theme else 'light' }}">
+  <header class="top-nav">
+
+    <div class="nav-left">
+      <a href="/dashboard" class="logo">
+        <img src="/static/images/logo.png">
+        <span>BuildHub</span>
+      </a>
+    </div>
+
+    <div class="nav-right">
+      <a href="/projects">Explore</a>
+      <a href="/my_projects">My Work</a>
+      <a href="/my_creations">My Creations</a>
+      <a href="/leaderboard">Leaderboard</a>
+    </div>
+
+  </header>
+  <div class="container">
+
+    <!-- 🔥 PROFILE HEADER -->
+    <div class="card">
+      <div class="top">
+
+        <div class="avatar">
+          {{ user.username[0] | upper }}
+        </div>
+
+        <div class="info">
+          <h2>{{ user.username }}</h2>
+          <div class="bio">
+            {{ user.bio or "No bio added yet" }}
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 📊 STATS -->
+      <div class="stats">
+
+        <div class="stat">
+          <h3>{{ user.xp or 0 }}</h3>
+          <p>XP</p>
+        </div>
+
+        <div class="stat">
+          <h3>{{ completed_count }}</h3>
+          <p>Projects</p>
+        </div>
+
+        <div class="stat">
+          <h3>{{ user.badges | length if user.badges else 0 }}</h3>
+          <p>Badges</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 🏆 BADGES -->
+    <div class="card">
+      <h3>🏆 Badges</h3>
+
+      {% if user.badges %}
+      <div class="badges">
+        {% for badge in user.badges %}
+        <div class="badge">
+          <img src="/static/badges/{{ badge.icon }}">
+          <div>{{ badge.name }}</div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p>No badges yet</p>
+      {% endif %}
+    </div>
+
+    <!-- 🔗 LINKS -->
+    <div class="card">
+      <h3>🔗 Links</h3>
+
+      <div class="links">
+
+        {% if user.github %}
+        <a href="{{ user.github }}" target="_blank">GitHub</a>
+        {% endif %}
+
+        {% if user.linkedin %}
+        <a href="{{ user.linkedin }}" target="_blank">LinkedIn</a>
+        {% endif %}
+
+        {% if user.leetcode %}
+        <a href="{{ user.leetcode }}" target="_blank">LeetCode</a>
+        {% endif %}
+
+        {% if user.instagram %}
+        <a href="{{ user.instagram }}" target="_blank">Instagram</a>
+        {% endif %}
+
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+</html>

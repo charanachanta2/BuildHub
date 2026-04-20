@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Register - BuildHub</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="stylesheet" href="/static/css/globals.css">
+  <link rel="icon" href="/static/images/favicon.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+    content="BuildHub helps developers learn by building real-world projects, earning XP, badges and proof of skill.">
+
+  <meta name="keywords" content="BuildHub, coding projects, developer portfolio, student projects, coding practice">
+
+  <meta name="author" content="BuildHub">
+
+  <meta property="og:title" content="BuildHub">
+  <meta property="og:description" content="Learn by Building Real Projects">
+  <meta property="og:image" content="/static/images/logo.png">
+  <meta property="og:type" content="website">
+</head>
+
+<body class="{{ user.theme if user.theme else 'light' }}">
+
+  <div class="container">
+    <div class="auth-box">
+      <h1>BuildHub</h1>
+      <h2>Create Account</h2>
+
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      {% for msg in messages %}
+      <div class="alert flash-msg">{{ msg }}</div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+
+      <form method="POST">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+
+        <button type="submit">Register</button>
+      </form>
+
+      <p>Already have an account? <a href="/login">Login</a></p>
+    </div>
+  </div>
+  <script>
+    setTimeout(() => {
+      const msgs = document.querySelectorAll('.flash-msg');
+      msgs.forEach(msg => {
+        msg.classList.add('hide-msg');
+
+        setTimeout(() => {
+          msg.remove();
+        }, 500);
+      });
+    }, 3000);
+  </script>
+</body>
+
+</html>

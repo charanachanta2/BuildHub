@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Admin - Project Review</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+    content="BuildHub helps developers learn by building real-world projects, earning XP, badges and proof of skill.">
+
+  <meta name="keywords" content="BuildHub, coding projects, developer portfolio, student projects, coding practice">
+
+  <meta name="author" content="BuildHub">
+
+  <meta property="og:title" content="BuildHub">
+  <meta property="og:description" content="Learn by Building Real Projects">
+  <meta property="og:image" content="/static/images/logo.png">
+  <meta property="og:type" content="website">
+
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI';
+      margin: 0;
+      background: #f5f5f5;
+    }
+
+    body.dark {
+      background: #0f172a;
+      color: #fff;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    /* CARD */
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #eee;
+      margin-bottom: 20px;
+    }
+
+    body.dark .card {
+      background: #1e293b;
+      border-color: #334155;
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .meta {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 10px;
+    }
+
+    body.dark .meta {
+      color: #aaa;
+    }
+
+    .desc {
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    /* ACTIONS */
+    .actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 8px 12px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    .approve {
+      background: #16a34a;
+      color: white;
+    }
+
+    .reject {
+      background: #dc2626;
+      color: white;
+    }
+
+    .view {
+      background: #eee;
+      color: #333;
+    }
+
+    body.dark .view {
+      background: #334155;
+      color: white;
+    }
+
+    /* EMPTY */
+    .empty {
+      text-align: center;
+      margin-top: 60px;
+      color: #888;
+    }
+  </style>
+</head>
+
+<body class="{{ user.theme if user and user.theme else 'light' }}">
+  <header class="top-nav">
+
+    <div class="nav-left">
+      <a href="/dashboard" class="logo">
+        <img src="/static/images/logo.png">
+        <span>BuildHub</span>
+      </a>
+    </div>
+
+    <div class="nav-right">
+      <a href="/projects">Explore</a>
+      <a href="/my_projects">My Work</a>
+      <a href="/my_creations">My Creations</a>
+      <a href="/leaderboard">Leaderboard</a>
+    </div>
+
+  </header>
+  <div class="container">
+
+    <h2>🛠 Pending Projects</h2>
+
+    {% if projects %}
+
+    {% for p in projects %}
+    <div class="card">
+
+      <div class="title">{{ p.title }}</div>
+
+      <div class="meta">
+        by {{ p.created_by }}
+      </div>
+
+      <div class="desc">
+        {{ p.content[:150] }}...
+      </div>
+
+      <div class="actions">
+        <a href="/project/{{ p._id }}" class="btn view">View</a>
+        <a href="/approve_project/{{ p._id }}" class="btn approve">Approve</a>
+        <a href="/reject_project/{{ p._id }}" class="btn reject">Reject</a>
+      </div>
+
+    </div>
+    {% endfor %}
+
+    {% else %}
+
+    <div class="empty">
+      <h3>No pending projects 🎉</h3>
+      <p>Everything is reviewed!</p>
+    </div>
+
+    {% endif %}
+
+  </div>
+
+</body>
+
+</html>

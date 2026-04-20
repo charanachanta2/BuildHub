@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Choose Username</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+    content="BuildHub helps developers learn by building real-world projects, earning XP, badges and proof of skill.">
+
+  <meta name="keywords" content="BuildHub, coding projects, developer portfolio, student projects, coding practice">
+
+  <meta name="author" content="BuildHub">
+
+  <meta property="og:title" content="BuildHub">
+  <meta property="og:description" content="Learn by Building Real Projects">
+  <meta property="og:image" content="/static/images/logo.png">
+  <meta property="og:type" content="website">
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="auth-box">
+
+      <h1>Choose Username</h1>
+      <p>This will be your BuildHub identity.</p>
+
+      <form method="POST">
+        <input type="text" name="username" placeholder="Enter username" required>
+        <button type="submit">Continue</button>
+      </form>
+
+      {% if error %}
+      <div class="alert">{{ error }}</div>
+      {% endif %}
+
+    </div>
+  </div>
+
+</body>
+
+</html>

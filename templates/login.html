@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Login - BuildHub</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="icon" href="/static/images/favicon.png">
+  <link rel="stylesheet" href="/static/css/globals.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+    content="BuildHub helps developers learn by building real-world projects, earning XP, badges and proof of skill.">
+
+  <meta name="keywords" content="BuildHub, coding projects, developer portfolio, student projects, coding practice">
+
+  <meta name="author" content="BuildHub">
+
+  <meta property="og:title" content="BuildHub">
+  <meta property="og:description" content="Learn by Building Real Projects">
+  <meta property="og:image" content="/static/images/logo.png">
+  <meta property="og:type" content="website">
+</head>
+
+<body class="{{ user.theme if user else 'light' }}">
+
+
+  <div class="container">
+    <div class="auth-box">
+
+      <h1>BuildHub</h1>
+      <h2>Login</h2>
+
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      {% for msg in messages %}
+      <div class="alert flash-msg">{{ msg }}</div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+
+      <form method="POST">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+      </form>
+      <button onclick="googleLogin()">Login with Google</button>
+      <button onclick="githubLogin()">Login with GitHub</button>
+      <a href="/forgot-password">Forgot Password?</a>
+      <p>New user? <a href="/register">Register</a></p>
+
+    </div>
+  </div>
+  <script>
+    function resetPassword() {
+      let email = prompt("Enter your registered email:");
+
+      if (!email || email.trim() === "") {
+        alert("Please enter your email.");
+        return;
+      }
+
+      firebase.auth().sendPasswordResetEmail(email.trim())
+        .then(() => {
+          alert("Password reset link sent to your email.");
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    }
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script>
+    setTimeout(() => {
+      const msgs = document.querySelectorAll('.flash-msg');
+      msgs.forEach(msg => {
+        msg.classList.add('hide-msg');
+
+        setTimeout(() => {
+          msg.remove();
+        }, 500);
+      });
+    }, 3000);
+  </script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDN4ya7ynOmVP2h8GlPnIW3xM0HNrwDhjo",
+      authDomain: "buildhub-187d6.firebaseapp.com",
+      projectId: "buildhub-187d6",
+      storageBucket: "buildhub-187d6.firebasestorage.app",
+      messagingSenderId: "1061088156642",
+      appId: "1:1061088156642:web:daa500cb15e407af6d77bb",
+      measurementId: "G-330PHPVD6R"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  <script>
+    function googleLogin() {
+      const provider = new firebase.auth.GoogleAuthProvider();
+
+      firebase.auth().signInWithPopup(provider)
+        .then((result) => {
+          sendUser(result.user);
+        })
+        .catch((error) => {
+          console.log(error);
+          alert(error.message);
+        });
+    }
+
+    function githubLogin() {
+      const provider = new firebase.auth.GithubAuthProvider();
+
+      firebase.auth().signInWithPopup(provider)
+        .then((result) => {
+          sendUser(result.user);
+        });
+    }
+
+    function sendUser(user) {
+      fetch("/social_login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name: user.displayName,
+          email: user.email
+        })
+      }).then(() => window.location = "/dashboard");
+    }
+  </script>
+  <script>
+    function sendUser(user) {
+
+      fetch("/social_login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name: user.displayName,
+          email: user.email
+        })
+      })
+        .then(res => res.json())
+        .then(data => {
+          window.location = data.redirect;
+        });
+
+    }
+  </script>
+</body>
+
+</html>

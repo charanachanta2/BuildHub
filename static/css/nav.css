@@ -1,0 +1,97 @@
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 30px;
+  background: white;
+  border-bottom: 1px solid #eee;
+}
+
+body.dark .top-nav {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+body.dark .logo {
+  color: white;
+}
+
+.logo img {
+  height: 22px;
+}
+
+.nav-right a {
+  margin-left: 15px;
+  text-decoration: none;
+  color: #555;
+  font-size: 14px;
+}
+
+body.dark .nav-right a {
+  color: #ccc;
+}
+
+.nav-right a:hover {
+  color: black;
+}
+
+body.dark .nav-right a:hover {
+  color: white;
+}
+@media (max-width: 768px){
+
+.top-nav,
+header{
+    flex-direction:column;
+    gap:12px;
+    align-items:flex-start;
+}
+
+.nav-right{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.layout{
+    flex-direction:column;
+}
+
+.sidebar{
+    width:100%;
+    position:static;
+}
+
+.main{
+    width:100%;
+    padding:15px;
+}
+
+.grid,
+.projects,
+.lc-top{
+    grid-template-columns:1fr !important;
+    display:grid;
+}
+
+.hero h1{
+    font-size:38px;
+}
+
+.hero p{
+    font-size:16px;
+}
+
+.card{
+    padding:18px;
+}
+}

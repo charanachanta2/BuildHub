@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Take Project</title>
+  <link rel="icon" href="/static/images/favicon.png">
+  <link rel="stylesheet" href="/static/css/nav.css">
+  <link rel="stylesheet" href="/static/css/globals.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+    content="BuildHub helps developers learn by building real-world projects, earning XP, badges and proof of skill.">
+
+  <meta name="keywords" content="BuildHub, coding projects, developer portfolio, student projects, coding practice">
+
+  <meta name="author" content="BuildHub">
+
+  <meta property="og:title" content="BuildHub">
+  <meta property="og:description" content="Learn by Building Real Projects">
+  <meta property="og:image" content="/static/images/logo.png">
+  <meta property="og:type" content="website">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto;
+      background: #f8f9fb;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .team-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .member {
+      display: flex;
+      gap: 10px;
+    }
+
+    input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      padding: 10px 15px;
+      border: none;
+      background: black;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .remove {
+      background: #ddd;
+      color: black;
+    }
+
+    .add-btn {
+      margin-top: 10px;
+      background: #444;
+    }
+
+    .submit-btn {
+      margin-top: 20px;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body class="{{ user.theme if user.theme else 'light' }}">
+  <header class="top-nav">
+
+    <div class="nav-left">
+      <a href="/dashboard" class="logo">
+        <img src="/static/images/logo.png">
+        <span>BuildHub</span>
+      </a>
+    </div>
+
+    <div class="nav-right">
+      <a href="/projects">Explore</a>
+      <a href="/my_projects">My Work</a>
+      <a href="/my_creations">My Creations</a>
+      <a href="/leaderboard">Leaderboard</a>
+    </div>
+
+  </header>
+  <div class="container">
+    <div class="card">
+
+      <h2>{{ project.title }}</h2>
+
+      <form method="POST" onsubmit="combineMembers()">
+
+        <h3>Team Members</h3>
+
+        <div id="team-list" class="team-list"></div>
+
+        <button type="button" class="add-btn" onclick="addMember()">+ Add Member</button>
+
+        <!-- Hidden input -->
+        <input type="hidden" name="team" id="team-data">
+
+        <button type="submit" class="submit-btn">Take Project</button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <script>
+    let count = 0;
+    const maxMembers = 5; // +1 leader = 6 total
+
+    function addMember() {
+      if (count >= maxMembers) {
+        alert("Max 6 members including you!");
+        return;
+      }
+
+      const div = document.createElement("div");
+      div.className = "member";
+
+      div.innerHTML = `
+        <input type="text" placeholder="Enter User ID (BHxxxx)" class="member-input">
+        <button type="button" class="remove" onclick="this.parentElement.remove(); count--;">X</button>
+    `;
+
+      document.getElementById("team-list").appendChild(div);
+      count++;
+    }
+
+    function combineMembers() {
+      const inputs = document.querySelectorAll(".member-input");
+      let ids = [];
+
+      inputs.forEach(input => {
+        if (input.value.trim() !== "") {
+          ids.push(input.value.trim());
+        }
+      });
+
+      document.getElementById("team-data").value = ids.join(",");
+    }
+  </script>
+
+</body>
+
+</html>

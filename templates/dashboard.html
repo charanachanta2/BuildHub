@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Dashboard - BuildHub</title>
+
+  <link rel="stylesheet" href="/static/css/dashboard.css">
+  <link rel="stylesheet" href="/static/css/globals.css">
+  <link rel="stylesheet" href="/static/css/global.css">
+  <link rel="icon" href="/static/images/favicon.png">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="BuildHub helps developers learn by building real-world projects, earning XP, badges and proof of skill.">
+
+<meta name="keywords" content="BuildHub, coding projects, developer portfolio, student projects, coding practice">
+
+<meta name="author" content="BuildHub">
+
+<meta property="og:title" content="BuildHub">
+<meta property="og:description" content="Learn by Building Real Projects">
+<meta property="og:image" content="/static/images/logo.png">
+<meta property="og:type" content="website">
+</head>
+
+<body class="{{ user.theme if user.theme else 'light' }}">
+  {% if not terms_accepted or not privacy_accepted %}
+
+  <div id="policyModal" class="policy-modal">
+    <div class="policy-box">
+
+      <h2>Welcome to BuildHub 🚀</h2>
+      <p>Please review and accept our policies to continue.</p>
+
+      <p>
+        <a href="/terms" target="_blank">Terms & Conditions</a> |
+        <a href="/privacy" target="_blank">Privacy Policy</a>
+      </p>
+
+      <button onclick="acceptPolicies()">Accept & Continue</button>
+      <button onclick="window.location='/logout'">Decline</button>
+
+    </div>
+  </div>
+
+  {% endif %}
+  <!-- 🔝 HEADER -->
+  <header>
+    <div class="logo">
+      <button onclick="toggleSidebar()">☰</button>
+      <img src="/static/images/logo.png">
+      <span>BuildHub</span>
+    </div>
+
+    <!-- 🔥 ADD THIS WRAPPER -->
+    <div class="right-section">
+
+      <!-- 🔔 NOTIFICATIONS -->
+      <div class="notif-menu">
+        <div class="bell" onclick="toggleNotif()">🔔</div>
+
+        <!-- 🔥 ADD CLASS notif-dropdown -->
+        <div id="notifDropdown" class="dropdown notif-dropdown hidden">
+          <h4>Notifications</h4>
+          <div id="notifList">Loading...</div>
+        </div>
+      </div>
+
+      
+      <!-- 👤 PROFILE -->
+      <div class="profile-menu">
+
+        <div class="avatar" onclick="toggleMenu()">
+          {{ user.name[0] | upper }}
+        </div>
+
+        <!-- 🔥 ADD CLASS profile-dropdown -->
+        <div id="dropdown" class="dropdown profile-dropdown hidden">
+
+          <a href="/profile">👤 Profile</a>
+          <a href="/my_projects">📦 My Work</a>
+          <a href="/leaderboard">🏆 Leaderboard</a>
+          <a href="/docs">📚 Docs</a>
+          <a href="/about">ℹ About Us</a>
+          <a href="/settings">⚙ Settings</a>
+
+          <hr>
+
+          <a href="/logout">🚪 Logout</a>
+
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- 📦 LAYOUT -->
+  <div class="layout">
+
+    <!-- 📚 SIDEBAR -->
+    <div id="sidebar" class="sidebar">
+
+      {% if session.role == "admin" %}
+      <a href="/admin">🛠 Admin Dashboard</a>
+      {% endif %}
+
+      <a href="/dashboard"> Dashboard</a>
+      <a href="/starter"> Getting Started</a>
+      <a href="#"> Categories</a>
+      <a href="/my_creations"> My Creations</a> <!-- created -->
+      <a href="/projects"> Explore</a>
+
+    </div>
+
+    <!-- 📊 MAIN -->
+    <div class="main">
+
+      <!-- 🔝 TOP SECTION -->
+      <div class="lc-top">
+
+        <!-- 🟢 PROGRESS RING -->
+        <div class="lc-card progress-card">
+
+          <svg width="140" height="140">
+            <circle cx="70" cy="70" r="60" stroke="#eee" stroke-width="10" fill="none" />
+
+            <circle cx="70" cy="70" r="60" stroke="#000" stroke-width="10" fill="none" stroke-dasharray="377"
+              stroke-dashoffset="{{ 377 - (stats.projects_completed * 15) }}" stroke-linecap="round"
+              class="progress-ring" />
+          </svg>
+
+          <div class="center-text">
+            <h2>{{ stats.projects_completed }}</h2>
+            <p>Solved</p>
+          </div>
+
+          <p>🔥 {{ stats.streak }} day streak</p>
+        </div>
+
+        <!-- 🟡 STATS -->
+        <div class="lc-card">
+          <h3>Stats</h3>
+          <p><b>Projects:</b> {{ stats.projects_completed }}</p>
+          <p><b>XP:</b> {{ user.xp }}</p>
+          <p><b>Badges:</b> {{ stats.badges }}</p>
+        </div>
+
+        <!-- 🟣 BADGES -->
+        <div class="lc-card">
+          <h3>Badges</h3>
+          {% if badges %}
+          {% for b in badges %}
+          <div class="badge earned">
+            🏆 {{ b.name }}
+          </div>
+          {% endfor %}
+          {% else %}
+          <p>No badges yet</p>
+          {% endif %}
+        </div>
+
+      </div>
+
+      <!-- 📅 HEATMAP -->
+      <div class="lc-card">
+        <h3>Activity</h3>
+
+        <div class="heatmap">
+          {% for a in activity %}
+          <div class="box level-{{ a }}"></div>
+          <div class="box level-{{ a }}" title="{{ a }} submissions"></div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- 🚀 PROJECTS -->
+      <h2>Projects</h2>
+
+      <div class="projects">
+        {% for project in projects %}
+        <div class="card">
+
+          <!-- 🔥 TITLE -->
+          <h3>{{ project.title }}</h3>
+
+          <!-- 🏷 STATUS -->
+          <div class="status {{ project.status }}">
+            {% if project.status == "completed" %}
+            ✅ Completed
+            {% elif project.status == "in_progress" %}
+            🚧 In Progress
+            {% else %}
+            🆕 Not Taken
+            {% endif %}
+          </div>
+
+          <!-- ⚡ ACTIONS -->
+          <div class="card-actions">
+
+            <a href="/project/{{ project._id }}" class="btn view">View</a>
+
+            {% if project.status == "not_taken" %}
+            <a href="/take/{{ project._id }}" class="btn primary">Take</a>
+
+            {% elif project.status == "in_progress" %}
+            <a href="/submit/{{ project._id }}" class="btn primary">Submit</a>
+
+            {% elif project.status == "completed" %}
+            <button class="btn disabled">Completed</button>
+            {% endif %}
+
+          </div>
+
+        </div>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ⚙️ JS -->
+  <script>
+    function acceptPolicies() {
+      fetch("/accept_policies", {
+        method: "POST"
+      })
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("policyModal").style.display = "none";
+        });
+    }
+  </script>
+  <script src="/static/js/main.js"></script>
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("active");
+    }
+
+    document.addEventListener("click", function (e) {
+      const sidebar = document.getElementById("sidebar");
+
+      if (!sidebar.contains(e.target) && !e.target.closest(".logo button")) {
+        sidebar.classList.remove("active");
+      }
+    });
+
+    function toggleMenu() {
+      document.getElementById("dropdown").classList.toggle("hidden");
+    }
+
+    // close on outside click
+    document.addEventListener("click", function (e) {
+      const menu = document.querySelector(".profile-menu");
+      if (!menu.contains(e.target)) {
+        document.getElementById("dropdown").classList.add("hidden");
+      }
+    });
+
+
+  </script>
+</body>
+
+</html>

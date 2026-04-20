@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Leaderboard - BuildHub</title>
+
+  <link rel="stylesheet" href="/static/css/leaderboard.css">
+  <link rel="stylesheet" href="/static/css/global.css">
+  <link rel="stylesheet" href="/static/css/globals.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+    content="BuildHub helps developers learn by building real-world projects, earning XP, badges and proof of skill.">
+
+  <meta name="keywords" content="BuildHub, coding projects, developer portfolio, student projects, coding practice">
+
+  <meta name="author" content="BuildHub">
+
+  <meta property="og:title" content="BuildHub">
+  <meta property="og:description" content="Learn by Building Real Projects">
+  <meta property="og:image" content="/static/images/logo.png">
+  <meta property="og:type" content="website">
+</head>
+
+<body class="{{ user.theme if user.theme else 'light' }}">
+
+  <!-- 🔝 HEADER -->
+  <header>
+    <div class="logo">
+      <button onclick="toggleSidebar()">☰</button>
+      <img src="/static/images/logo.png">
+      <span>BuildHub</span>
+    </div>
+
+    <nav>
+      <a href="/dashboard">Dashboard</a>
+      <a href="/logout">Logout</a>
+    </nav>
+  </header>
+
+  <!-- 📦 LAYOUT -->
+  <div class="layout">
+
+    <!-- 📚 SIDEBAR -->
+    <div id="sidebar" class="sidebar">
+      <a href="/dashboard">📊 Dashboard</a>
+      <a href="/starter">📘 Problem Statements</a>
+      <a href="#">🗂 Categories</a>
+      <a href="/my_projects">📦 My Projects</a>
+      <a href="/leaderboard">🏆 Leaderboard</a>
+    </div>
+
+    <!-- 📊 MAIN -->
+    <div class="main">
+
+      <h2>🏆 Leaderboard</h2>
+
+      <table class="leaderboard">
+        <tr>
+          <th>#</th>
+          <th>User</th>
+          <th>XP</th>
+          <th>Projects</th>
+        </tr>
+
+        {% for u in users %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ u.username }}</td>
+          <td>{{ u.xp }}</td>
+          <td>{{ u.completed }}</td>
+        </tr>
+        {% endfor %}
+
+      </table>
+
+    </div>
+  </div>
+
+  <!-- ⚙️ JS -->
+  <script src="/static/js/main.js"></script>
+
+</body>
+
+</html>

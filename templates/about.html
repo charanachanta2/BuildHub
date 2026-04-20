@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+    content="BuildHub helps developers learn by building real-world projects, earning XP, badges and proof of skill.">
+
+  <meta name="keywords" content="BuildHub, coding projects, developer portfolio, student projects, coding practice">
+
+  <meta name="author" content="BuildHub">
+
+  <meta property="og:title" content="BuildHub">
+  <meta property="og:description" content="Learn by Building Real Projects">
+  <meta property="og:image" content="/static/images/logo.png">
+  <meta property="og:type" content="website">
+  <title>About BuildHub</title>
+  <link rel="stylesheet" href="/static/css/nav.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+      line-height: 1.6;
+    }
+
+    body.dark {
+      background: #0f172a;
+      color: #f8fafc;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 100px 20px 60px;
+      text-align: center;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    body.dark .hero {
+      border-bottom-color: #334155;
+    }
+
+    .hero h1 {
+      font-size: 56px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      letter-spacing: -1px;
+      color: #000;
+    }
+
+    body.dark .hero h1 {
+      color: #f8fafc;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #666;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    body.dark .hero p {
+      color: #cbd5e1;
+    }
+
+    /* Grid Layout */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+      margin-top: 60px;
+      margin-bottom: 80px;
+    }
+
+    /* Cards */
+    .card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 32px;
+      transition: all 0.3s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    body.dark .card {
+      background: #1e293b;
+      border-color: #334155;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+      border-color: #d1d5db;
+    }
+
+    body.dark .card:hover {
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+      border-color: #475569;
+    }
+
+    .card h3 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #1a1a1a;
+    }
+
+    body.dark .card h3 {
+      color: #f8fafc;
+    }
+
+    .card p {
+      color: #666;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    body.dark .card p {
+      color: #cbd5e1;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 80px;
+      padding-bottom: 60px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    body.dark .section {
+      border-bottom-color: #334155;
+    }
+
+    .section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section h2 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: #000;
+      letter-spacing: -0.5px;
+    }
+
+    body.dark .section h2 {
+      color: #f8fafc;
+    }
+
+    .section p {
+      color: #555;
+      font-size: 16px;
+      line-height: 1.9;
+      max-width: 800px;
+      margin-bottom: 16px;
+    }
+
+    body.dark .section p {
+      color: #cbd5e1;
+    }
+
+    .section ul {
+      list-style-position: inside;
+      color: #555;
+      font-size: 16px;
+      max-width: 800px;
+    }
+
+    body.dark .section ul {
+      color: #cbd5e1;
+    }
+
+    .section li {
+      margin-bottom: 12px;
+      line-height: 1.8;
+      color: #555;
+    }
+
+    body.dark .section li {
+      color: #cbd5e1;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 80px;
+      padding: 40px 20px;
+      text-align: center;
+      color: #888;
+      border-top: 1px solid #e5e7eb;
+      font-size: 14px;
+    }
+
+    body.dark .footer {
+      border-top-color: #334155;
+      color: #94a3b8;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        padding: 60px 20px 40px;
+      }
+
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-top: 40px;
+      }
+
+      .section h2 {
+        font-size: 28px;
+      }
+
+      .section {
+        margin-bottom: 60px;
+        padding-bottom: 40px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <header class="top-nav">
+      <div class="nav-left">
+        <a href="/dashboard" class="logo">
+          <img src="/static/images/logo.png" alt="BuildHub Logo">
+          <span>BuildHub</span>
+        </a>
+      </div>
+
+      <div class="nav-right">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/projects">Explore</a>
+        <a href="/docs">Docs</a>
+        <a href="/leaderboard">Leaderboard</a>
+      </div>
+    </header>
+
+    <div class="hero">
+      <h1>About BuildHub</h1>
+      <p>Where developers grow through real projects, team collaboration, consistent execution, and proof of skill.</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>🎯 Mission</h3>
+        <p>Turn passive learners into real builders through hands-on execution and meaningful projects.</p>
+      </div>
+
+      <div class="card">
+        <h3>🌍 Vision</h3>
+        <p>Create the most trusted project ecosystem for future developers worldwide.</p>
+      </div>
+
+      <div class="card">
+        <h3>⚡ Why Us</h3>
+        <p>BuildHub values projects, consistency, and real output over theory alone.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Our Story</h2>
+      <p>Many students complete courses but struggle to build real products. BuildHub was created to solve that gap. We
+        believe learning happens fastest when people build things that matter and receive meaningful feedback.</p>
+    </div>
+
+    <div class="section">
+      <h2>How It Works</h2>
+      <ul>
+        <li>Explore curated project challenges designed for skill growth</li>
+        <li>Work solo or collaborate with a team of up to 6 developers</li>
+        <li>Submit GitHub repository links and live hosted projects</li>
+        <li>Receive peer reviews with detailed constructive feedback</li>
+        <li>Earn XP, streaks, badges and establish real credibility</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Who It&apos;s For</h2>
+      <ul>
+        <li>Students building portfolios to impress employers</li>
+        <li>Developers sharpening their technical skills</li>
+        <li>Creators wanting accountability and community support</li>
+        <li>Builders who learn best by doing and shipping real projects</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Future Roadmap</h2>
+      <ul>
+        <li>Hiring through BuildHub profiles and achievements</li>
+        <li>Global hackathons and coding competitions</li>
+        <li>AI mentor tools for personalized guidance</li>
+        <li>Startup team matching and co-founder discovery</li>
+        <li>Open-source challenge arena and contributions</li>
+      </ul>
+    </div>
+
+    <div class="footer">
+      BuildHub © 2026 • Learn by Building
+    </div>
+
+  </div>
+
+</body>
+
+</html>
