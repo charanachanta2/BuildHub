@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, session, flash, url_for
+from flask import Response
 from werkzeug.security import generate_password_hash, check_password_hash
 import smtplib
 import os
@@ -78,6 +79,19 @@ def terms():
 @app.route("/privacy")
 def privacy():
     return render_template("privacy.html")
+
+@app.route("/sitemap.xml")
+def sitemap():
+    xml = """<?xml version="1.0" encoding="UTF-8"?>
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      <url><loc>https://www.buildhubcode.xyz/</loc></url>
+      <url><loc>https://www.buildhubcode.xyz/about</loc></url>
+      <url><loc>https://www.buildhubcode.xyz/projects</loc></url>
+      <url><loc>https://www.buildhubcode.xyz/docs</loc></url>
+      <url><loc>https://www.buildhubcode.xyz/login</loc></url>
+      <url><loc>https://www.buildhubcode.xyz/register</loc></url>
+    </urlset>"""
+    return Response(xml, mimetype="application/xml")
 
 # ---------------- SOCIAL LOGIN ----------------
 @app.route("/social_login", methods=["POST"])
