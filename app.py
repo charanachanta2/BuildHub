@@ -21,6 +21,9 @@ import random
 app = Flask(__name__)
 app.secret_key = "BuildHub@2026$Secret#987"
 
+app.config["SESSION_COOKIE_SECURE"] = True
+app.config["SESSION_COOKIE_HTTPONLY"] = True
+app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
 
 app.config["MAIL_EMAIL"] = "buildhubcode@gmail.com"
 app.config["MAIL_PASSWORD"] ="ysxi vkjm neoh seyl"
