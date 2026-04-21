@@ -1405,7 +1405,7 @@ def logout():
     session.clear()
     return redirect("/login")
 
-@app.route("/<username>")
+@app.route("/u/<username>")
 def public_profile(username):
     # 🔍 find user
     user = db.users.find_one({"username": username})
