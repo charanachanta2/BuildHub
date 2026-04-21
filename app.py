@@ -322,7 +322,7 @@ if "user" in session:
     user = db.users.find_one({"username": session["user"]})
     if user:
         return redirect("/dashboard")
-    session.clear()
+        session.clear()
 
     if request.method == "POST":
 
