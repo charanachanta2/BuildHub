@@ -318,9 +318,11 @@ def register():
     return render_template("register.html")
 
 # ---------------- LOGIN ----------------
-if "user" in session:
-    user = db.users.find_one({"username": session["user"]})
-    if user:
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if "user" in session:
+      user = db.users.find_one({"username": session["user"]})
+      if user:
         return redirect("/dashboard")
         session.clear()
 
