@@ -318,12 +318,11 @@ def register():
     return render_template("register.html")
 
 # ---------------- LOGIN ----------------
-@app.route("/login", methods=["GET", "POST"])
-def login():
-
-    # If already logged in
-    if "user" in session:
+if "user" in session:
+    user = db.users.find_one({"username": session["user"]})
+    if user:
         return redirect("/dashboard")
+    session.clear()
 
     if request.method == "POST":
 
